@@ -14,11 +14,10 @@
   limitations under the License.
   -->
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    tools:context=".MainActivity" xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <TextView
@@ -43,29 +42,55 @@
         />
     
     <TextView
-        android:id="@+id/tvContent"
+        android:id="@+id/tvPro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvPartOfSpeech"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        android:typeface="serif"
+        android:text="my pronunciation"
+        />
+    
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPro"
         android:layout_marginTop="22dp"
         android:gravity="center_horizontal|fill_horizontal"
         android:hint="The definition of the word above..."
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla diam felis, pharetra at sollicitudin sed, dignissim eget dolor. Vestibulum eget leo urna, vitae dapibus tellus."
-        android:typeface="serif" />
+        android:text="Nulla diam felis, pharetra at sollicitudin sed, dignissim eget dolor."
+        android:typeface="serif" 
+        android:layout_centerHorizontal="true"/>
+    
+     <TextView
+         android:id="@+id/tvDivider"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/tvContent"
+         android:layout_marginTop="22dp"
+         android:gravity="center_horizontal|fill"
+         android:paddingLeft="20dp"
+         android:paddingRight="20dp"
+         android:text="~~~"
+         android:typeface="serif"
+         android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvContent"
+        android:layout_below="@+id/tvDivider"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:gravity="center_horizontal|fill_horizontal"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="Sed ut velit sapien. Aliquam vel mauris quam, ullamcorper lobortis odio. Maecenas neque justo, iaculis eu adipiscing vitae, tristique in augue."
-        android:typeface="serif" />
+        android:typeface="serif"
+         />
 
 </RelativeLayout>

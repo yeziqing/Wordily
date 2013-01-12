@@ -56,6 +56,7 @@ public class WordDisplay extends FragmentActivity {
 	public static String definition = "init";
 	public static String[] defintiions = new String[10];
 	public static String[] partOfSpeech = new String[10];
+	public static String[] pronunciation = new String[10];
 	public static String[][] something = new String[10][5];
 	public static String thestatus;
 	public static String result = "";
@@ -214,8 +215,9 @@ public class WordDisplay extends FragmentActivity {
             //((TextView) rootView.findViewById(android.R.id.text1)).setText(Integer.toString(args.getInt(ARG_OBJECT)));
            
             int f =  args.getInt(ARG_OBJECT) - 1;
-            ((TextView) rootView.findViewById(R.id.tvWord)).setText("¥ "+word_arr[f]+" ¥");
-            ((TextView) rootView.findViewById(R.id.tvPartOfSpeech)).setText("{ "+partOfSpeech[f]+" }");            
+            ((TextView) rootView.findViewById(R.id.tvWord)).setText("• "+word_arr[f]+" •");
+            ((TextView) rootView.findViewById(R.id.tvPartOfSpeech)).setText("{ "+partOfSpeech[f]+" }");  
+            ((TextView) rootView.findViewById(R.id.tvPro)).setText(pronunciation[f]);
             ((TextView) rootView.findViewById(R.id.tvContent)).setText(defintiions[f]);
             ((TextView) rootView.findViewById(R.id.tv1)).setText(something[f][0]); //first example for the f'th word
         

@@ -16,6 +16,7 @@ import net.jeremybrooks.knicker.WordApi;
 import net.jeremybrooks.knicker.WordsApi;
 import net.jeremybrooks.knicker.dto.Definition;
 import net.jeremybrooks.knicker.dto.Example;
+import net.jeremybrooks.knicker.dto.Pronunciation;
 import net.jeremybrooks.knicker.dto.SearchResult;
 import net.jeremybrooks.knicker.dto.SearchResults;
 import net.jeremybrooks.knicker.dto.TokenStatus;
@@ -63,10 +64,6 @@ public class TestKnicker {
     	Set<Knicker.PartOfSpeech> include = new TreeSet<Knicker.PartOfSpeech>();
     	include.add(Knicker.PartOfSpeech.noun);
     	
-    	
-    	
-    	//net.jeremybrooks.knicker.dto.Word random = WordsApi.randomWord(true, null , null, 0, 0, 0, 0, 10, 0);
-    	
     	//net.jeremybrooks.knicker.dto.Word random = WordsApi.randomWord(true, include , exclude, 0, 0, 0, 0, 0, 0);
     	//CollectionDemoActivity.myWord = random.getWord();
 		//List<Definition> def = WordApi.definitions(random.getWord());
@@ -76,9 +73,8 @@ public class TestKnicker {
 		//	CollectionDemoActivity.definition = d.getPartOfSpeech().toUpperCase() + " - " + d.getText();
 		//}
     	
-		List<Word> myWordList = WordsApi.randomWords();
-
-		//Iterator<Word> it = myWordList.iterator();
+		//List<Word> myWordList = WordsApi.randomWords();
+    	List<Word> myWordList = WordsApi.randomWords(true, null, null, 0, 0, 0, 0, 5, 0, null, null, 10);
 
 		int k = 0;
 		
@@ -91,7 +87,8 @@ public class TestKnicker {
 			k++;
 		}*/
 		
-		
+		//Copy the retrieved words from List<Word> to an String array
+		//Copy the retrieved examples from List<Example> to an String array
 		for (int i = 0; i < myWordList.size(); i++) {
 			net.jeremybrooks.knicker.dto.Word temp = myWordList.get(i);
 			WordDisplay.word_arr[i] = temp.getWord();
@@ -106,24 +103,26 @@ public class TestKnicker {
 				}
 				//k++;
 			//}
-			
-			
-			
-			
+				
+			List<Pronunciation> myPro = WordApi.pronunciations(WordDisplay.word_arr[i], true, null, null, 0);			
+			for (Pronunciation p : myPro) {
+				WordDisplay.pronunciation[i] = p.getRaw();
+			}
+		
 		}
-		
+				
+		Set<Knicker.SourceDictionary> mySD = new TreeSet<Knicker.SourceDictionary>();
+		mySD.add(Knicker.SourceDictionary.webster);
+		mySD.add(Knicker.SourceDictionary.century);
+		mySD.add(Knicker.SourceDictionary.macmillan);
+		mySD.add(Knicker.SourceDictionary.cmu);
+		mySD.add(Knicker.SourceDictionary.wiktionary);
+	
 		k = 0;
-		
-		//Set<Knicker.SourceDictionary> mySD = null;
-		//mySD.add(Knicker.SourceDictionary.webster);
-		
-		//List<Definition> def = WordApi.definitions(WordDisplay.word_arr[k]);
-		
-		
-		
 		while (k< myWordList.size()) {
 			
-			List<Definition> def = WordApi.definitions(WordDisplay.word_arr[k]);
+		//	List<Definition> def = WordApi.definitions(WordDisplay.word_arr[k]);
+			List<Definition> def = WordApi.definitions(WordDisplay.word_arr[k], 0, null, false, null, true, false);
 			for (Definition d : def) {
 				WordDisplay.partOfSpeech[k] = d.getPartOfSpeech().toUpperCase();
 				WordDisplay.defintiions[k] = d.getText();
